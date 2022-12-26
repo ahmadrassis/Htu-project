@@ -1,0 +1,48 @@
+<div class="min">
+  <form class="Signup-card">
+    <h3>Signup</h3>
+
+    <mat-form-field appearance="outline" class="field-width">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        type="text"
+        [formControl]="name"
+        required placeholder="Name"
+      />
+      <mat-error *ngIf="name.invalid"> You must enter a value </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="field-width">
+      <input
+        matInput
+        placeholder="Email"
+        type="email"
+        [formControl]="email"
+        required
+      />
+      <mat-label>Email</mat-label>
+
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }} </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="field-width">
+      <input
+        matInput
+        placeholder="Password"
+        type="password"
+        [formControl]="Password"
+        required
+      />
+      <mat-label>Password</mat-label>
+
+      <mat-error *ngIf="Password.invalid"
+        >{{ getPasswordErrorMessage() }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSignupClicked()">
+      Signup
+    </button>
+  </form>
+</div>

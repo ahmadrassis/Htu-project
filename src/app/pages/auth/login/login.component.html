@@ -1,0 +1,43 @@
+<div class="min">
+  <form class="login-card">
+    <h3>Login</h3>
+    <p>
+      <mat-form-field appearance="outline" class="field-width">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" />
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="field-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          type="email"
+        />
+        <mat-error *ngIf="email.invalid"
+          >{{ getEmailErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="outline" class="field-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="password"
+          formControlName="Password"
+          type="password"
+        />
+
+        <mat-error *ngIf="password.invalid"
+          >{{ getPasswordErrorMessage() }}
+        </mat-error>
+      </mat-form-field>
+    </p>
+
+    <a [routerLink]="['/auth/signup']">create account</a>
+
+    <button mat-raised-button color="primary">Login</button>
+  </form>
+</div>

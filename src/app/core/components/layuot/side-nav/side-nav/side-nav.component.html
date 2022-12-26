@@ -1,0 +1,52 @@
+<mat-sidenav-container>
+  <mat-sidenav #snav>
+    <mat-list>
+      <div *ngFor="let item of navMenu.children">
+        <div *ngIf="item.children; else hasNoChildren">
+          <a [routerLink]="[item.router]">
+            <mat-list-item>
+              <mat-icon matListItemIcon>
+                {{ item.icon }}
+              </mat-icon>
+              <div matListItemTitle class="item-text">
+                {{ item.displayName }}
+              </div>
+            </mat-list-item>
+          </a>
+        </div>
+
+        <ng-template #hasNoChildren>
+          <mat-list-item>
+            <mat-icon matListItemIcon>
+              {{ item.icon }}
+            </mat-icon>
+            <div matListItemTitle class="item-text">
+              {{ item.displayName }}
+            </div>
+            <div *ngFor="let childOfItem of item.children">
+              <a [routerLink]="[childOfItem.router]">
+                <mat-list-item>
+                  <mat-icon matListItemIcon>
+                    {{ childOfItem.icon }}
+                  </mat-icon>
+                  <div matListItemTitle class="item-text">
+                    {{ childOfItem.displayName }}
+                  </div>
+                </mat-list-item>
+              </a>
+            </div>
+          </mat-list-item>
+        </ng-template>
+      </div>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <router-outlet> </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
