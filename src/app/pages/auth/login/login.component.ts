@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/core/components/services/auth.service';
 })
 export class LoginComponent {
   formGroup!: FormGroup;
+  hide = true;
+name: any;
   constructor(
     private router: Router,
     private _authService: AuthService,

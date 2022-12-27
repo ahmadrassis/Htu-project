@@ -11,8 +11,9 @@ export class SidenaveService {
   getNavMenu(): NavMenuDto {
     return new NavMenuDto('NavMenu', [
       new NavItemDto('Approval', 'dashboard', 'admin', '/approval'),
-      new NavItemDto('Startups', 'dashboard', '', '/Stratup'),
+      new NavItemDto('Startups', 'dashboard', '', '/startup'),
       new NavItemDto('Sectors', 'dashboard', 'admin', '/sectors'),
+      new NavItemDto('SectorsEndUser', 'dashboard', 'enduser', '/sectors'),
     ]);
   }
 }

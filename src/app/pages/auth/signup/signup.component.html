@@ -8,7 +8,8 @@
         matInput
         type="text"
         [formControl]="name"
-        required placeholder="Name"
+        required
+        placeholder="Name"
       />
       <mat-error *ngIf="name.invalid"> You must enter a value </mat-error>
     </mat-form-field>
@@ -33,7 +34,17 @@
         type="password"
         [formControl]="Password"
         required
+        [type]="hide ? 'password' : 'text'"
       />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
       <mat-label>Password</mat-label>
 
       <mat-error *ngIf="Password.invalid"

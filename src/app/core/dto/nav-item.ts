@@ -2,13 +2,13 @@ export class NavItemDto {
   displayName: string;
   icon: string;
   router: string;
-  roll: string;
+  role: string;
   children!: NavItemDto[];
 
   constructor(
     displayName: string,
     icon: string,
-    roll: string,
+    role: string,
 
     router: string,
 
@@ -16,7 +16,7 @@ export class NavItemDto {
   ) {
     this.displayName = displayName;
     this.icon = icon;
-    this.roll = roll;
+    this.role = role;
     this.router = router;
     this.children = children ? children : [];
   }

@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   dbpath = '/users';
   dbRef: AngularFireList<any>;
-  userInfo: any;
+  userInfo = new BehaviorSubject<any>({});
   userId: string = '';
 
   isLoggedIn$ = new BehaviorSubject<boolean>(!!localStorage.getItem('UserId'));
@@ -49,22 +49,22 @@ export class AuthService {
   createUser(userId: string, name: string, email: string): Observable<any> {
     this.userId = userId;
     return from(
-      this.dbRef
-        .update(userId, {
-          userId: userId,
-          name: name,
-          email: email,
-          roll: 'enduser',
-        })
-        .then(() => {
-          // this.getUserById(this.userId);
-        })
+      this.dbRef.update(userId, {
+        userId: userId,
+        name: name,
+        email: email,
+        role: 'enduser',
+      })
     );
   }
   authStateUbscripe() {
     this.angularFireAuth.authState.subscribe((user) => {
       if (user) {
-        this.router.navigate(['/startup/all-startup']);
+        if (!this.isLoggedIn) {
+          this.router.navigate(['/startup/all-startup']);
+        }
+        this.getUserById(user.uid);
+        this.userId = user.uid;
         localStorage.setItem('UserId', user.uid);
         this.isLoggedIn$.next(true);
       } else {
@@ -74,14 +74,12 @@ export class AuthService {
     });
   }
   logout() {}
-  // getUserById(userId: string) {
-  //   this.angularFireDatabase
-  //     .object(`${this.dbpath}/${this.userId}`)
-  //     .valueChanges()
-  //     .subscribe((rseult) => {
-  //       this.userInfo = rseult;
-  //       console.log(this.userInfo);
-  //     });
-  //   this.userInfo;
-  // }
+  getUserById(userId: string) {
+    return this.angularFireDatabase
+      .object(`${this.dbpath}/${userId}`)
+      .valueChanges()
+      .subscribe((user) => {
+        this.userInfo.next(user);
+      });
+  }
 }

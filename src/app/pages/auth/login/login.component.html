@@ -7,14 +7,11 @@
         <input matInput placeholder="Placeholder" />
       </mat-form-field>
     </p>
+
     <p>
       <mat-form-field appearance="outline" class="field-width">
         <mat-label>Email</mat-label>
-        <input
-          matInput
-          placeholder="Email"
-          type="email"
-        />
+        <input matInput placeholder="Email" type="email" />
         <mat-error *ngIf="email.invalid"
           >{{ getEmailErrorMessage() }}
         </mat-error>
@@ -23,13 +20,24 @@
     <p>
       <mat-form-field appearance="outline" class="field-width">
         <mat-label>Password</mat-label>
+
         <input
           matInput
           placeholder="password"
           formControlName="Password"
           type="password"
+          matInput
+          [type]="hide ? 'password' : 'text'"
         />
-
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
         <mat-error *ngIf="password.invalid"
           >{{ getPasswordErrorMessage() }}
         </mat-error>

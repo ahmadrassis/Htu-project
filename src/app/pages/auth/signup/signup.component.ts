@@ -16,6 +16,8 @@ import { AuthService } from 'src/app/core/components/services/auth.service';
 })
 export class SignupComponent {
   formGroup!: FormGroup;
+  hide = true;
+
   constructor(
     private router: Router,
     private _authService: AuthService,

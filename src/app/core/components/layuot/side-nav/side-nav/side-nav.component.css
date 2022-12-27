@@ -4,31 +4,25 @@ mat-sidenav-container {
 
 mat-sidenav {
   width: 300px;
-  background-color:  #4831D4;
-  ;
+  background-color: rgb(237, 231, 52);
   color: #fff;
   padding: 1rem;
-
 }
-
 
 a {
   text-decoration: none;
-
 }
 
 .item-text {
-  color: #CCF381;
+  color: rgb(85, 85, 85);
 }
 
-.mdc-list-item.mdc-list-item--with-one-line .mdc-list-item__start{
-  color: #CCF381;
+.mdc-list-item.mdc-list-item--with-one-line .mdc-list-item__start {
+  color: rgb(85, 85, 85);
 }
 
-
-button{
-  background-color: #3d155f;
-  color: #CCF381;
-
+button {
+  background-color: rgb(85, 85, 85);
+  color: #fff;
 }
-/* */
+
