@@ -8,7 +8,6 @@ import {
   AngularFireList,
 } from '@angular/fire/compat/database';
 import { Router } from '@angular/router';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,9 +16,7 @@ export class AuthService {
   dbRef: AngularFireList<any>;
   userInfo = new BehaviorSubject<any>({});
   userId: string = '';
-
   isLoggedIn$ = new BehaviorSubject<boolean>(!!localStorage.getItem('UserId'));
-
   constructor(
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
@@ -31,7 +28,7 @@ export class AuthService {
   get isLoggedIn() {
     return this.isLoggedIn$.getValue();
   }
-  login(email: string, password: string): Observable<any> {
+  login( email: string, password: string): Observable<any> {
     return from(
       this.angularFireAuth
         .signInWithEmailAndPassword(email, password)
@@ -40,7 +37,6 @@ export class AuthService {
         })
     );
   }
-
   signup(email: string, password: string): Observable<UserCredential> {
     return from(
       this.angularFireAuth.createUserWithEmailAndPassword(email, password)
@@ -73,7 +69,13 @@ export class AuthService {
       }
     });
   }
-  logout() {}
+  logout() {
+    this.angularFireAuth.signOut().then(() => {
+      localStorage.removeItem('UserId');
+      this.router.navigate(['/home']);
+      this.isLoggedIn$.next(false);
+    });
+  }
   getUserById(userId: string) {
     return this.angularFireDatabase
       .object(`${this.dbpath}/${userId}`)

@@ -1,0 +1,17 @@
+<div style="display: flex; justify-content: center" *ngIf="loading">
+  <mat-spinner diameter="40" color="Accent" value="determinate"></mat-spinner>
+</div>
+
+<div *ngIf="!loading">
+  <div class="prev">
+    <mat-card class="example-card">
+      <img [src]="startup.logo" alt="" />
+      <mat-card-content>
+        <h1>{{ startup.name }}</h1>
+        <h4>{{ startup.emailAddress }}</h4>
+        <p>{{ startup.sectors }}</p>
+        <p>{{ startup.websiteUrl }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

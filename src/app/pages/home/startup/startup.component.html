@@ -1,1 +1,15 @@
-<p>startup works!</p>
+<div class="container">
+  <div class="card" *ngFor="let item of arrayStartup">
+    <h3 class="title">{{ item.name }}</h3>
+    <div class="bar">
+      <div class="emptybar"></div>
+      <div class="filledbar"></div>
+    </div>
+    <img [src]="item.logo" alt="" />
+
+    <div class="circle">
+
+      <button mat-button (click)="onPreviewClicked()">Read More</button>
+    </div>
+  </div>
+</div>

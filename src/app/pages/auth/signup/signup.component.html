@@ -1,5 +1,9 @@
-<div class="min">
-  <form class="Signup-card">
+<div class="background">
+  <div class="shape"></div>
+  <div class="shape"></div>
+</div>
+
+  <form>
     <h3>Signup</h3>
 
     <mat-form-field appearance="outline" class="field-width">
@@ -51,9 +55,9 @@
         >{{ getPasswordErrorMessage() }}
       </mat-error>
     </mat-form-field>
+    <button  (click)="onSignupClicked()">Signup</button>
 
-    <button mat-raised-button color="primary" (click)="onSignupClicked()">
-      Signup
-    </button>
+
+
   </form>
-</div>
+

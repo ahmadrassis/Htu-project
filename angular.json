@@ -27,7 +27,6 @@
           },
           "configurations": {
             "production": {
-
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -86,7 +85,8 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css"
             ],
             "scripts": []
           }

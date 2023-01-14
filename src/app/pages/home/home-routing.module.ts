@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { StartupComponent } from './startup/startup.component';
+import { StartupComponent } from '../startup/startup/startup.component';
 import { PreviewstartupComponent } from './preview-startup/previewstartup.component';
 
 const routes: Routes = [
@@ -24,6 +24,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class HomeRoutingModule {}
-
-
-

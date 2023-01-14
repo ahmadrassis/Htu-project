@@ -1,14 +1,12 @@
-<mat-sidenav-container>
+<mat-sidenav-container >
   <mat-sidenav #snav>
     <div style="display: flex; justify-content: center" *ngIf="loading">
       <mat-spinner
-
         diameter="40"
         color="Accent"
         value="determinate"
       ></mat-spinner>
     </div>
-
     <mat-list *ngIf="!loading">
       <div *ngFor="let item of navMenu.children">
         <div *ngIf="item.children.length > 0; else hasNoChildren">
@@ -22,7 +20,13 @@
               {{ item.displayName }}
             </div>
             <div *ngFor="let childOfItem of item.children">
-              <a [routerLink]="[childOfItem.router]"  *ngIf="childOfItem.role === userData.role || childOfItem.role.length === 0" >
+              <a
+                [routerLink]="[childOfItem.router]"
+                *ngIf="
+                  childOfItem.role === userData.role ||
+                  childOfItem.role.length === 0
+                "
+              >
                 <mat-list-item>
                   <mat-icon matListItemIcon>
                     {{ childOfItem.icon }}
@@ -35,7 +39,6 @@
             </div>
           </mat-list-item>
         </div>
-
         <ng-template #hasNoChildren>
           <a
             [routerLink]="[item.router]"
@@ -53,15 +56,19 @@
         </ng-template>
       </div>
     </mat-list>
-  </mat-sidenav>
 
+    <button style="color: #ffffff;" mat-button (click)="onLoggedoutClicked()">
+      <mat-icon style="color:#ffffff">logout</mat-icon>Logout
+    </button>
+  </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
       <button mat-icon-button (click)="snav.toggle()">
-        <mat-icon>menu</mat-icon>
+        <mat-icon  style="color:rgb(248, 140, 15)">menu</mat-icon>
       </button>
     </mat-toolbar>
-
-    <router-outlet> </router-outlet>
+    <main class="mat-elevation-z8">
+      <router-outlet> </router-outlet>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -27,22 +27,19 @@ const routes: Routes = [
     path: 'approval',
     loadChildren: () =>
       import('./pages/approval/approval.module').then((m) => m.ApprovalModule),
-      canLoad: [AuthGuard],
-
+    canLoad: [AuthGuard],
   },
   {
     path: 'sectors',
     loadChildren: () =>
       import('./pages/sectors/sectors.module').then((m) => m.SectorsModule),
-      canLoad: [AuthGuard],
-
+    canLoad: [AuthGuard],
   },
   {
     path: 'startup',
     loadChildren: () =>
       import('./pages/startup/startup.module').then((m) => m.StartupModule),
-      canLoad: [AuthGuard],
-
+    canLoad: [AuthGuard],
   },
 
   {

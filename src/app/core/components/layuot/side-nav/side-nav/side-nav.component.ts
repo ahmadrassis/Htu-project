@@ -2,9 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { SidenaveService } from '../../../services/sidenave.service';
 import { NavMenuDto } from 'src/app/core/dto/nav-menu';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { SidenaveService } from 'src/app/core/services/sidenave.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -13,6 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class SideNavComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSidenav) sidenav!: MatSidenav;
+
   navMenu: NavMenuDto;
   userData: any;
 
@@ -26,13 +27,15 @@ export class SideNavComponent implements OnInit, AfterViewInit {
     console.log(this._sideNave);
   }
   ngOnInit(): void {
+    this.getuserIngo();
+  }
+  getuserIngo() {
     this._authService.userInfo.subscribe((user) => {
-      if(user){
-        this.userData = user;
-        console.log(this.userData);
-        this.loading = false ;
+      this.userData = user;
+      console.log(this.userData);
+      if (this.userData.role) {
+        this.loading = false;
       }
-
     });
   }
 
@@ -51,5 +54,7 @@ export class SideNavComponent implements OnInit, AfterViewInit {
       });
   }
 
-
+  onLoggedoutClicked() {
+    this._authService.logout();
+  }
 }
