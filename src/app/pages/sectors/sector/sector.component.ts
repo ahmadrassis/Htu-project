@@ -14,7 +14,7 @@ import { SectorsService } from 'src/app/core/services/sectors.service';
 })
 export class SectorComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  displayedColumns: String[] = ['name', 'color', 'sectors', 'categoryName'];
+  displayedColumns: String[] = ['name', 'color', 'sectors', 'categroyName'];
   dataSource = new MatTableDataSource<sectors>([]);
   loading = true;
   userData: any;
@@ -33,30 +33,29 @@ export class SectorComponent implements OnInit, OnDestroy {
     this.getuserInf();
   }
   onRowClicked() {}
-
-  getuserInf() {
-    this.subscribe = this._authService.userInfo.subscribe((user) => {
+  getuserInf(){
+    this.subscribe = this._authService.userInfo.subscribe((user)=>{
       this.userData = user;
-      console.log(this.userData);
-      if (this.userData.role) {
-        if (this.userData.role === 'admin') {
-          this.displayedColumns.push('action');
+      console.log(this.userData );
+      if(this.userData.role){
+        if(this.userData.role === 'admin'){
+            this.displayedColumns.push('action')
         }
         this.getAllData();
       }
-    });
+    })
   }
 
-  getAllData() {
-    this.subscribe = this._sectorsService.getAll().subscribe((result: any) => {
-      if (result) {
-        this.dataSource = new MatTableDataSource(result);
-        console.log(result);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource._updateChangeSubscription();
-        this.loading = false;
-      }
-    });
+  getAllData(){
+    this.subscribe = this._sectorsService.getAll().subscribe((result:any)=>{
+      if(result){
+      this.dataSource =new MatTableDataSource(result);
+      console.log(result);
+      this.dataSource.paginator =this.paginator;
+      this.dataSource._updateChangeSubscription();
+      this.loading=false;
+    }
+    })
   }
 
   applyFilter(event: Event) {

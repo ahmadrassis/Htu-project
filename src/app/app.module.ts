@@ -12,7 +12,10 @@ import { SideNavModule } from './core/components/layuot/side-nav/side-nav.module
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, AppComponent],
+  declarations: [
+    AppComponent,
+
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,8 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     SideNavModule,
-    MatSidenavModule,
-    MatIconModule
+    // MatSidenavModule,
+    // MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent],

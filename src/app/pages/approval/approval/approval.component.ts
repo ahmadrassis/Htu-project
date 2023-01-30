@@ -6,6 +6,7 @@ import { Startup } from 'src/app/core/interface/startups.interface';
 import { ApprovalService } from 'src/app/core/services/approval.service';
 import { StartupsService } from 'src/app/core/services/startups.service';
 import { Subscription } from 'rxjs';
+import { Type } from '@angular/compiler';
 
 @Component({
   selector: 'app-approval',
@@ -18,6 +19,7 @@ export class ApprovalComponent  implements OnInit {
   displayedColumns =['name','emailAddress','sectors','city','action'];
   loading = true;
   key:string='';
+  listOfSectors :any[]=[];
   constructor(
     private _startupServices:StartupsService,
     private _approvalService:ApprovalService,

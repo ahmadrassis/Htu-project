@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
   <label for="file" class="logo"
-    >Logo <img [src]="imgSrc" alt="" *ngIf="formGroup.controls['logo'].value" />
+    > <img [src]="imgSrc" alt="" *ngIf="formGroup.controls['logo'].value" />
   </label>
   <input
     id="file"
@@ -15,25 +15,24 @@
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
     <input matInput placeholder="Name" formControlName="name" />
-    <mat-error *ngIf="formGroup.get('name')?.invalid">{{
-      getErrorMessage(formGroup.get("name"))
+    <mat-error *ngIf="formGroup.get('name')?.invalid">{{  getErrorMessage(formGroup.get("name"))
     }}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Sectors</mat-label>
     <mat-select multiple formControlName="sectors">
-      <mat-option [value]="'sector1'">sector 1</mat-option>
-      <mat-option [value]="'sector2'">sector 2</mat-option>
+      <mat-option *ngFor="let item of listOfSectors" [value]="item" >{{item.name}} </mat-option>
+
     </mat-select>
+    <mat-error *ngIf="formGroup.get('sectors')?.invalid">{{getErrorMessage(formGroup.get('sectors'))}}</mat-error>
+
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Website Url</mat-label>
     <input matInput placeholder="Website Url" formControlName="websiteUrl" />
-    <mat-error *ngIf="formGroup.get('websiteUrl')?.invalid">{{
-      getErrorMessage(formGroup.get("websiteUrl"))
-    }}</mat-error>
+    <mat-error *ngIf="formGroup.get('websiteUrl')?.invalid">{{getErrorMessage(formGroup.get("websiteUrl"))    }}</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">

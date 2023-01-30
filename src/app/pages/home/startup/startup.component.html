@@ -1,15 +1,27 @@
+<app-main></app-main>
 <div class="container">
   <div class="card" *ngFor="let item of arrayStartup">
     <h3 class="title">{{ item.name }}</h3>
-    <div class="bar">
-      <div class="emptybar"></div>
-      <div class="filledbar"></div>
-    </div>
     <img [src]="item.logo" alt="" />
 
-    <div class="circle">
-
-      <button mat-button (click)="onPreviewClicked()">Read More</button>
-    </div>
+    <button mat-button (click)="onPreviewClicked(item)">Read More</button>
   </div>
 </div>
+
+<!-- <div class="card" *ngFor="let item of arrayStartup">
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Extra large</mat-card-subtitle>
+      <img [src]="item.logo" alt="" />
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <button mat-button (click)="onPreviewClicked(item)">Read More</button>
+
+  </mat-card-content>
+</mat-card>
+
+</div> -->

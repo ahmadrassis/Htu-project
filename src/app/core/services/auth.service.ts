@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { UserCredential } from '@firebase/auth-types';
 import {

@@ -4,7 +4,7 @@
 }
 
 .footer-distributed{
-	background: rgb(25, 83, 181);
+	background: rgb(40, 42, 55);
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	box-sizing: border-box;
 	width: 100%;
@@ -77,10 +77,10 @@ section {
 	width: 35px;
 	height: 35px;
 	cursor: pointer;
-  background-color: rgb(237, 231, 52);
+  background-color:rgb(243, 109, 64);
   border-radius: 2px;
   font-size: 20px;
-  color: #424242;
+  color: #e6e6e6;
 	text-align: center;
 	line-height: 35px;
 

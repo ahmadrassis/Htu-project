@@ -1,4 +1,4 @@
-<div style="display: flex; justify-content: center" *ngIf="loading">
+<!-- <div style="display: flex; justify-content: center" *ngIf="loading">
   <mat-spinner diameter="40" color="Accent" value="determinate"></mat-spinner>
 </div>
 
@@ -9,9 +9,24 @@
       <mat-card-content>
         <h1>{{ startup.name }}</h1>
         <h4>{{ startup.emailAddress }}</h4>
-        <p>{{ startup.sectors }}</p>
-        <p>{{ startup.websiteUrl }}</p>
+        <h2 *ngFor="let item of startup.sectors">{{item.name}}</h2>
       </mat-card-content>
     </mat-card>
   </div>
-</div>
+</div> -->
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ startup.name }}</mat-card-title>
+    <mat-card-subtitle>{{ startup.emailAddress }}</mat-card-subtitle>
+  </mat-card-header>
+  <img [src]="startup.logo" alt="" />
+  <mat-card-content>
+    <p>{{ startup.websiteUrl }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <h2 *ngFor="let item of startup.sectors">{{item.name}}</h2>
+
+  </mat-card-actions>
+</mat-card>

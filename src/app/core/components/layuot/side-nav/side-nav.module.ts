@@ -20,7 +20,11 @@ const MatImport = [
 
 @NgModule({
   declarations: [SideNavComponent],
-  imports: [CommonModule, RouterModule, ...MatImport],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ...MatImport
+  ],
   exports: [SideNavComponent],
 })
 export class SideNavModule {}

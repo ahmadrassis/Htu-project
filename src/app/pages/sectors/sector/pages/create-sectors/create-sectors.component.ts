@@ -33,7 +33,7 @@ export class CreateSectorsComponent implements OnInit , OnDestroy{
         logo:null,
         color:[null,[Validators.required]],
         sectors:[null,[Validators.required]],
-        categoryName:[null,[Validators.required]],
+        categroyName:[null,[Validators.required]],
       })
      }
   ngOnDestroy(): void {
@@ -80,7 +80,7 @@ createSectors(){
     logo:this.formGroup.controls['logo'].value,
     color:this.formGroup.controls['color'].value,
     sectors:this.formGroup.controls['sectors'].value,
-    categroyName:this.formGroup.controls['categoryName'].value,
+    categroyName:this.formGroup.controls['categroyName'].value,
 }).then(()=>{
   this.location.back();
 })

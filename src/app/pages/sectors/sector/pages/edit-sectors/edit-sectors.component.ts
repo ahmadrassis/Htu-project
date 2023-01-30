@@ -36,7 +36,7 @@ export class EditSectorsComponent implements OnInit, OnDestroy {
       logo: null,
       color: [null, [Validators.required]],
       sectors: [null, [Validators.required]],
-      categoryName: [null, [Validators.required]],
+      categroyName: [null, [Validators.required]],
     });
   }
   ngOnDestroy(): void {
@@ -61,7 +61,7 @@ export class EditSectorsComponent implements OnInit, OnDestroy {
           name: [result['name'], [Validators.required]],
           sectors: [result['sectors'], [Validators.required]],
           color: [result['color'], [Validators.required]],
-          categoryName: [result['categoryName'], [Validators.required]],
+          categroyName: [result['categroyName'], [Validators.required]],
         });
         this.imgSrc = result['logo'];
       });
@@ -103,7 +103,7 @@ export class EditSectorsComponent implements OnInit, OnDestroy {
         logo: this.formGroup.controls['logo'].value,
         color: this.formGroup.controls['color'].value,
         sectors: this.formGroup.controls['sectors'].value,
-        categroyName: this.formGroup.controls['categoryName'].value,
+        categroyName: this.formGroup.controls['categroyName'].value,
       })
       .then(() => {
         this.location.back();

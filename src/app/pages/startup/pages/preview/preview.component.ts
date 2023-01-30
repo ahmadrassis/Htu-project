@@ -9,28 +9,30 @@ import { OnInit } from '@angular/core';
   templateUrl: './preview.component.html',
   styleUrls: ['./preview.component.css'],
 })
-export class PreviewComponent {
+export class PreviewComponent implements OnInit, OnDestroy {
   key: string = '';
-  subscribe!: Subscription;
-
   startup: Startup = {
     emailAddress: '',
     name: '',
     sectors: [],
     websiteUrl: '',
   };
+  subscribe!: Subscription;
   loading = true;
   constructor(
     private activatedRoute: ActivatedRoute,
     private _startupService: StartupsService
   ) {}
   ngOnDestroy(): void {
-    this.subscribe.unsubscribe();
-    console.log('done subscribe');
+    if (this.subscribe) {
+      this.subscribe.unsubscribe();
+    }
+    console.log('done unsubscribe');
   }
 
   ngOnInit(): void {
     this.subscribe = this.activatedRoute.queryParams.subscribe((result) => {
+      console.log(result);
       if (result['key']) {
         this.key = result['key'];
         this.getById();
@@ -42,6 +44,7 @@ export class PreviewComponent {
     this.subscribe = this._startupService
       .getById(this.key)
       .subscribe((result: any) => {
+        console.log(result.startup);
         if (result) {
           this.startup = result;
           this.loading = false;

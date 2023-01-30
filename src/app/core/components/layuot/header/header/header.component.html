@@ -3,7 +3,7 @@
   <nav>
     <ul>
       <li><a [routerLink]="['/auth/login']" >Login</a></li>
-      <li><a  [routerLink]="['/auth/signup']">SignUp</a></li>
+      <li><a  (click)="onSignupCliked()" >SignUp</a></li>
     </ul>
   </nav>
 </mat-toolbar>

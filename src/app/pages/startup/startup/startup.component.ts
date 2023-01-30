@@ -14,35 +14,37 @@ import { StartupsService } from 'src/app/core/services/startups.service';
 })
 export class StartupComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   dataSource = new MatTableDataSource<Startup>([]);
   displayedColumns = ['name', 'emailAddress', 'sectors', 'city'];
   userData: any;
   loading = true;
   subscribe!: Subscription;
-   constructor(
-    private _startupsService: StartupsService,
+  constructor(
+    private _startupServices: StartupsService,
     private router: Router,
     private _authService: AuthService
   ) {}
 
+  //unsubscribe ngOnDestroy
   ngOnDestroy(): void {
     if (this.subscribe) {
       this.subscribe.unsubscribe();
     }
     console.log('done unsubscribe');
   }
+
   ngOnInit(): void {
-    this.getuserInfo();
+    this.getuserInf();
+
   }
 
-  getuserInfo() {
-    this._authService.userInfo.subscribe((user) => {
+  getuserInf() {
+    this.subscribe = this._authService.userInfo.subscribe((user) => {
       this.userData = user;
       console.log(this.userData);
       if (this.userData.role) {
         if (this.userData.role === 'admin') {
-          this.displayedColumns.push('actions');
+          this.displayedColumns.push('action');
         }
         this.getAllData();
       }
@@ -50,7 +52,7 @@ export class StartupComponent implements OnInit, OnDestroy {
   }
 
   getAllData() {
-    this._startupsService.getAll().subscribe((result: any) => {
+    this.subscribe = this._startupServices.getAll().subscribe((result: any) => {
       if (result) {
         this.dataSource = new MatTableDataSource(result);
         console.log(result);
@@ -60,6 +62,7 @@ export class StartupComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   applyFilter($event: any) {
     const filterValue = ($event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -68,24 +71,26 @@ export class StartupComponent implements OnInit, OnDestroy {
       this.dataSource.paginator.firstPage();
     }
   }
-  onEditClicked(row: Startup) {
+
+  onEditCliked(row: Startup) {
     this.router.navigate(['/startup/update-startup'], {
       queryParams: {
         key: row.key,
       },
     });
   }
-  onDeleteClicked(row: Startup) {
-    this._startupsService.delete(row.key).then(() => {
-      window.alert('Deleted sucsesfull');
+
+  onDeleteCliked(row: Startup) {
+    this._startupServices.delete(row.key).then(() => {
+      window.alert('Deleted sucessfull');
     });
   }
 
-  onAddClicked() {
+  onAddCliked() {
     this.router.navigate(['/startup/add-startup']);
   }
 
-  onRowClicked(row: Startup) {
+  onRowCliked(row: Startup) {
     this.router.navigate(['/startup/preview-startup'], {
       queryParams: {
         key: row.key,
